@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "proto_generated/registry";
+option java_package = "com.joshuating.grpc";
+option java_outer_classname = "RegistryProto";
+
+message RegisterRequest {
+    string serviceId = 1;
+    string host = 2;
+    uint32 port = 3;
+    int64 timestamp = 4;
+}
+
+message RegisterResponse {
+    bool success = 1;
+    uint64 regKey = 2;
+    int64 timestamp = 3;
+    string err = 4;
+}
+
+message DeregisterRequest {
+    string serviceId = 1;
+    uint64 regKey = 2;
+    int64 timestamp = 3;
+}
+
+message DeregisterResponse {
+    bool success = 1;
+    int64 timestamp = 2;
+    string err = 3;
+}
+
+service RegistryService {
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc Deregister(DeregisterRequest) returns (DeregisterResponse);
+}

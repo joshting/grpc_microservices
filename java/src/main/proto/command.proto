@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "github.com/joshting/golang_gprc/command";
+option java_package = "com.joshuating.grpc";
+option java_outer_classname = "CommandProto";
+
+message CommandRequest {
+    string command = 1;
+    repeated string arguments = 2;
+}
+
+message CommandResponse {
+    string command = 1;
+    repeated string results = 2;
+}
+
+service CommandService {
+    rpc Create(CommandRequest) returns (CommandResponse);
+}

@@ -1,0 +1,6 @@
+{
+    "java.project.sourcePaths": [
+        "java/target/generated-sources/protobuf"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "proto_generated/microservice";
+option java_package = "com.joshuating.grpc";
+option java_outer_classname = "MicroserviceProto";
+
+message CheckStatusRequest {
+    uint64 regKey = 1; // can be used by the microservice to validate request
+    int64 timestamp = 2;
+}
+
+message CheckStatusResponse {
+    int32 status = 1;
+    // ** first 2 bits reserved for following
+    // 0 / b00 - up and healthy
+    // 1 / b01 - starting up
+    // 2 / b10 - shutting down
+    // 3 / b11 - error or unknown state
+    // ** remaining bits only used to show activity and only applies to b00 
+    string err = 2;
+}
+
+service MicroserviceService {
+    rpc CheckStatus(CheckStatusRequest) returns (CheckStatusResponse);
+}
