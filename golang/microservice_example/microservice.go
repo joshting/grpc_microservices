@@ -57,11 +57,7 @@ func dialRegistry() ConnectionStatus {
 
 	// wait for 500 millisec, then it is a good indication if connection is successful or not
 	time.Sleep(500 * time.Millisecond)
-	if conn.GetState() != connectivity.Ready {
-		return ConnectionStatus{Conn: conn, AfterRegister: false}
-	}
-
-	return ConnectionStatus{Conn: conn, AfterRegister: true}
+	return ConnectionStatus{Conn: conn, AfterRegister: conn.GetState() == connectivity.Ready}
 }
 
 func main() {
@@ -102,7 +98,7 @@ func main() {
 						connStat = dialRegistry()
 					}
 				} else if !registered {
-					fmt.Println("Connectivity ready! Connect")
+					fmt.Println("Connectivity ready! Attempting to register")
 					reg := registry.NewRegistryServiceClient(connStat.Conn)
 					response, err4 := reg.Register(context.Background(),
 						&registry.RegisterRequest{
@@ -117,6 +113,7 @@ func main() {
 					log.Printf("Response received from registry: %v\n", response)
 					regKey = response.RegKey
 					registered = true
+					notReadyCount = 0
 				}
 
 				// wait for 2 seconds and try again

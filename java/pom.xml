@@ -92,7 +92,8 @@
                             <archive>
                             <manifest>
                             <!-- <mainClass>com.joshuating.grpc.GrpcServer</mainClass> -->
-                                <mainClass>com.joshuating.grpc.GrpcClient</mainClass>
+                            <!-- <mainClass>com.joshuating.grpc.GrpcClient</mainClass> -->
+                                <mainClass>com.joshuating.grpc.Microservice</mainClass>
                             </manifest>
                             </archive>
                             <descriptorRefs>

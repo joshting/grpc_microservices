@@ -45,6 +45,7 @@ func randomUint64() uint64 {
 // }
 
 func CheckAlive(reg Registration) {
+	fmt.Printf("state %v", reg.Connection.GetState())
 	if reg.Connection.GetState() != connectivity.Ready {
 		// if connectivity not ready, close it so that service can reconnect
 		reg.Connection.Close()
@@ -66,6 +67,8 @@ func (s grpcRegistryServiceServer) Register(ctx context.Context, req *registry.R
 		conn, err := grpc.Dial(":"+strconv.FormatInt(int64(req.Port), 10), grpc.WithTransportCredentials(insecure.NewCredentials()))
 		if err != nil {
 			log.Fatalf("did not connect: %s", err)
+		} else {
+			log.Printf("state after dial: " + conn.GetState().String())
 		}
 
 		var client = microservice.NewMicroserviceServiceClient(conn)

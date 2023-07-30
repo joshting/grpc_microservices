@@ -1,5 +1,8 @@
 package com.joshuating.grpc;
 
+import com.joshuating.grpc.proto.CommandProto;
+import com.joshuating.grpc.proto.CommandServiceGrpc;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 

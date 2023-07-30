@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option go_package = "proto_generated/microservice";
-option java_package = "com.joshuating.grpc";
+option java_package = "com.joshuating.grpc.proto";
 option java_outer_classname = "MicroserviceProto";
 
 message CheckStatusRequest {

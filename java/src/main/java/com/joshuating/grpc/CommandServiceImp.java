@@ -1,6 +1,7 @@
 package com.joshuating.grpc;
 
-import com.joshuating.grpc.CommandServiceGrpc.CommandServiceImplBase;
+import com.joshuating.grpc.proto.CommandProto;
+import com.joshuating.grpc.proto.CommandServiceGrpc.CommandServiceImplBase;
 
 import io.grpc.stub.StreamObserver;
 
